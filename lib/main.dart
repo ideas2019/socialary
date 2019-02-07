@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
-import 'posts.dart';
+import 'home.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder> {
-        '/posts': (BuildContext context) => new Posts()
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => new Home()
       },
       home: MyHomePage(title: 'Socialary'),
     );
@@ -30,28 +30,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
           widget.title,
-          style: TextStyle(
-            fontFamily: 'Oswald'
-          ),
+          style: TextStyle(fontFamily: 'Oswald'),
         ),
         backgroundColor: Colors.teal,
         leading: new IconButton(
-          onPressed: () { print('Pressed!'); },
-          icon: Icon(FontAwesomeIcons.tablet)
-        ),
+            onPressed: () {
+              print('Pressed!');
+            },
+            icon: Icon(FontAwesomeIcons.tablet)),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            height: 150.0,
+            height: 250.0,
             child: new Carousel(
               images: [
                 new ExactAssetImage("assets/img/home1.jpeg"),
@@ -63,9 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
               dotSpacing: 15.0,
               dotColor: Colors.blueGrey,
               indicatorBgPadding: 5.0,
-              dotBgColor: Colors.grey.withOpacity(0.5),
+              dotBgColor: Colors.transparent,
               borderRadius: false,
-              moveIndicatorFromBottom: 135.0,
               noRadiusForIndicator: true,
               overlayShadow: true,
               overlayShadowColors: Colors.white,
@@ -73,135 +70,133 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ),
           SizedBox(height: 80.0),
-          Container(
-            padding: EdgeInsets.only(right: 15.0, left: 15.0),
-            height: 40.0,
-            child: Material(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.blueGrey,
-              elevation: 7.0,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/posts');
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: new IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/posts');
-                        },
-                        icon: Icon(
-                          FontAwesomeIcons.twitter,
-                          color: Colors.white,
-                        )
-                      ),
-                    ),
-                    SizedBox(width: 10.0),
-                    Center(
-                      child: Text(
-                        'Log in with Twitter',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Oswald',
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(right: 15.0, left: 15.0),
+                height: 40.0,
+                child: Material(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.blueGrey,
+                  elevation: 7.0,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/home');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: new IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/home');
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.twitter,
+                                color: Colors.white,
+                              )),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ), 
-            ),
-          ),
-          SizedBox(height: 20.0),
-          Container(
-            padding: EdgeInsets.only(right: 15.0, left: 15.0),
-            height: 40.0,
-            child: Material(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.grey,
-              elevation: 7.0,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/posts');
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: new IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/posts');
-                        },
-                        icon: Icon(
-                          FontAwesomeIcons.google,
-                          color: Colors.white,
+                        SizedBox(width: 10.0),
+                        Center(
+                          child: Text(
+                            'Log in with Twitter',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Oswald',
+                            ),
+                          ),
                         )
-                      ),
+                      ],
                     ),
-                    SizedBox(width: 10.0),
-                    Center(
-                      child: Text(
-                        'Log in with Google',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Oswald',
-                        ),
-                      ),
-                    )
-                  ],
-                ) 
-              )
-            )
-          ),
-          SizedBox(height: 20.0),
-          Container(
-            height: 40.0,
-            padding: EdgeInsets.only(right: 15.0, left: 15.0),
-            color: Colors.transparent,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  style: BorderStyle.solid,
-                  width: 1.0
+                  ),
                 ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                  padding: EdgeInsets.only(right: 15.0, left: 15.0),
+                  height: 40.0,
+                  child: Material(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.grey,
+                      elevation: 7.0,
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/home');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Center(
+                                child: new IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/home');
+                                    },
+                                    icon: Icon(
+                                      FontAwesomeIcons.google,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(width: 10.0),
+                              Center(
+                                child: Text(
+                                  'Log in with Google',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Oswald',
+                                  ),
+                                ),
+                              )
+                            ],
+                          )))),
+              SizedBox(height: 20.0),
+              Container(
+                height: 40.0,
+                padding: EdgeInsets.only(right: 15.0, left: 15.0),
                 color: Colors.transparent,
-                borderRadius: BorderRadius.circular(20.0)
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/posts');
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: new IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/posts');
-                        },
-                        icon: Icon(
-                          FontAwesomeIcons.facebookF,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
                           color: Colors.black,
-                        )
-                      ),
-                    ),
-                    SizedBox(width: 10.0),
-                    Center(
-                      child: Text(
-                        'Log in with Facebook',
-                        style: TextStyle(
-                          fontFamily: 'Oswald',
-                          fontWeight: FontWeight.bold
+                          style: BorderStyle.solid,
+                          width: 1.0),
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(20.0)),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/home');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: new IconButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/home');
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.facebookF,
+                                color: Colors.black,
+                              )),
                         ),
-                      ),
-                    )
-                  ],
+                        SizedBox(width: 10.0),
+                        Center(
+                          child: Text(
+                            'Log in with Facebook',
+                            style: TextStyle(
+                                fontFamily: 'Oswald',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            )
-          ),  
+            ],
+          ),
         ],
       ),
     );
