@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'chatitem.dart';
+import 'article.dart';
 
-class LatestPosts extends StatelessWidget{
+class LatestArticles extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Home"),
-        backgroundColor: Colors.teal,
       ),
-      body: _postsGenerator(),
+      body: _articlesRenderer(),
     );
   }
 }
 
-Widget _postsGenerator() {
-    int maxPostsToShow = 10;
+Widget _articlesRenderer() {
+    int maxArticlesToShow = 10;
     return new ListView.builder(
       padding: const EdgeInsets.all(16.0),
-      itemCount: maxPostsToShow,
+      itemCount: maxArticlesToShow,
       itemBuilder: (BuildContext _context, int i) {
         if (i.isOdd) {
-          return new Divider();
+          return new Divider(
+            color: Theme.of(_context).hintColor,
+          );
         }
-
-        return new ChatItem();
+        return new Article();
       }
     );
 }
